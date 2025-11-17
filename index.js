@@ -1,21 +1,28 @@
-const jsonServer = require("json-server");
+import jsonServer from "json-server";
+import corsMiddleware from "./cors.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const server = jsonServer.create();
-const router = jsonServer.router("db.json");
+
+// db.json is in the same folder
+const router = jsonServer.router(path.join(__dirname, "db.json"));
+
 const middlewares = jsonServer.defaults();
 
-server.use(middlewares);
-server.use(jsonServer.bodyParser);
+// Render uses process.env.PORT
+const PORT = process.env.PORT || 5000;
 
-server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+server.use(jsonServer.bodyParser);
+server.use(corsMiddleware);
+server.use(middlewares);
 
 server.use(router);
 
-const PORT = process.env.PORT || 10000;
 server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`📁 DB loaded from: ${path.join(__dirname, "db.json")}`);
 });
