@@ -1,4 +1,10 @@
 {
+  "user" : [{
+      "id": 1,
+      "name": "Sanjay S",
+      "email": "sanjay@example.com",
+      "password": "Sanjay@123"
+  }],
   "income": [
     {"id": 1,"source":"Salary","description":"Monthly Salary","amount":45000,"date":"2025-02-01"},
     {"id": 2,"source":"Freelance","description":"Website Development","amount":12000,"date":"2025-02-05"},
