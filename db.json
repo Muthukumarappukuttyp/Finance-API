@@ -3,7 +3,8 @@
       "id": 1,
       "name": "Sanjay S",
       "email": "sanjay@example.com",
-      "password": "Sanjay@123"
+      "password": "Sanjay@123",
+      "phone" : 1234567890
   }],
   "income": [
     {"id": 1,"source":"Salary","description":"Monthly Salary","amount":45000,"date":"2025-02-01"},
